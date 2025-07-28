@@ -2,7 +2,7 @@
 # 📘 Understanding Group Relative Policy Optimization(GRPO)
 
 A guide to the theory and implementation of **GRPO** for aligning Large Language Models (LLMs).
-
+![GRPO vs PPO](images/image1.png)
 ---
 
 ##  Overview
@@ -14,7 +14,7 @@ This repository provides a **technical explanation** of the Group-wise Policy Op
 The aim of GRPO is to fine-tune a base LLM (**reference policy** `π_ref`) to create a new, improved model (**learned policy** `π_θ`).
 
 ### 📌 Formal Objective:
-![GRPO Objective](images/grpo.png)
+![GRPO Objective](images/image.png)
 
 - **π_θ(y|x)**: Probability of the fine-tuned model generating response `y` for prompt `x`.
 - **π_ref(y|x)**: Probability of the base model generating the same response.
