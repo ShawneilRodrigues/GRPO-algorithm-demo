@@ -14,33 +14,7 @@ This repository provides a **technical explanation** of the Group-wise Policy Op
 The aim of GRPO is to fine-tune a base LLM (**reference policy** `π_ref`) to create a new, improved model (**learned policy** `π_θ`).
 
 ### 📌 Formal Objective:
-\[
-The formal objective that GRPO aims to maximize is:
-
-L 
-GRPO
-​
- (π 
-θ
-​
- )=E 
-x∼D,y∼π 
-θ
-​
- (⋅∣x)
-​
- [r(x,y)]−β⋅E 
-x∼D
-​
- [KL(π 
-θ
-​
- (⋅∣x)∣∣π 
-ref
-​
- (⋅∣x))]
-Let's break down the components:
-\]
+![GRPO Objective](images/grpo_objective.png)
 
 - **π_θ(y|x)**: Probability of the fine-tuned model generating response `y` for prompt `x`.
 - **π_ref(y|x)**: Probability of the base model generating the same response.
@@ -70,6 +44,8 @@ generated_outputs = model.generate(
 
 Use a reward function and apply **Softmax** to compute normalized weights:
 
+![Softmax Weights](images/softmax_weights.png)
+
 ```python
 # Get raw reward scores r_i
 rewards = torch.tensor(
@@ -84,6 +60,8 @@ weights = F.softmax(rewards, dim=0)
 ### 🔹 Step 3: Weighted Log-Likelihood Loss
 
 Update `π_θ` to favor high-reward responses:
+
+![GRPO Loss](images/grpo_loss.png)
 
 ```python
 total_loss = 0
@@ -105,19 +83,15 @@ optimizer.step()
 
 ### ✅ PPO-Style Clipping
 
-Prevents large, destabilizing updates:
+![PPO Clipping](images/ppo_clipping.png)
 
-$$
-L_{clipped} = \min(ratio(θ)⋅A_i, \; clip(ratio(θ), 1−ϵ, 1+ϵ)⋅A_i)
-$$
+Prevents large, destabilizing updates.
 
 ### ✅ KL Penalty (β)
 
-Keeps policy close to the reference to avoid reward hacking:
+![KL Penalty](images/kl_penalty.png)
 
-$$
-KL\_Penalty = β⋅KL(π_θ(⋅∣x)||π_ref(⋅∣x))
-$$
+Keeps policy close to the reference to avoid reward hacking.
 
 * **High β:** Safer, less deviation.
 * **Low β:** More exploration, risk of forgetting base knowledge.
@@ -131,6 +105,12 @@ $$
  ┣ 📜 README.md
  ┣ 📜 grpo_training.py
  ┣ 📜 reward_function.py
+ ┣ 📂 images/
+ ┃ ┣ grpo_objective.png
+ ┃ ┣ softmax_weights.png
+ ┃ ┣ grpo_loss.png
+ ┃ ┣ ppo_clipping.png
+ ┃ ┗ kl_penalty.png
  ┣ 📂 models/
  ┗ 📂 data/
 ```
@@ -150,5 +130,4 @@ $$
 Contributions, pull requests, and discussions are welcome! 🎉
 
 ---
-
 
