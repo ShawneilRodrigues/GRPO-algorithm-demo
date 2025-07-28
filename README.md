@@ -5,7 +5,7 @@ A guide to the theory and implementation of **GRPO** for aligning Large Language
 
 ---
 
-## 🚀 Overview
+##  Overview
 This repository provides a **technical explanation** of the Group-wise Policy Optimization (GRPO) algorithm, a method for aligning LLMs with human preferences or specific objectives. It explains the **core equations** and connects them to a **practical Python implementation**.
 
 ---
@@ -14,7 +14,7 @@ This repository provides a **technical explanation** of the Group-wise Policy Op
 The aim of GRPO is to fine-tune a base LLM (**reference policy** `π_ref`) to create a new, improved model (**learned policy** `π_θ`).
 
 ### 📌 Formal Objective:
-![GRPO Objective](images/grpo_objective.png)
+![GRPO Objective](images/grpo.png)
 
 - **π_θ(y|x)**: Probability of the fine-tuned model generating response `y` for prompt `x`.
 - **π_ref(y|x)**: Probability of the base model generating the same response.
@@ -44,7 +44,7 @@ generated_outputs = model.generate(
 
 Use a reward function and apply **Softmax** to compute normalized weights:
 
-![Softmax Weights](images/softmax_weights.png)
+![Softmax Weights](images/softmax.png)
 
 ```python
 # Get raw reward scores r_i
@@ -61,7 +61,7 @@ weights = F.softmax(rewards, dim=0)
 
 Update `π_θ` to favor high-reward responses:
 
-![GRPO Loss](images/grpo_loss.png)
+![GRPO Loss](images/weightloss.png)
 
 ```python
 total_loss = 0
@@ -81,15 +81,15 @@ optimizer.step()
 
 ## 🔧 3. Stabilizing Training
 
-### ✅ PPO-Style Clipping
+###  PPO-Style Clipping
 
 ![PPO Clipping](images/ppo_clipping.png)
 
 Prevents large, destabilizing updates.
 
-### ✅ KL Penalty (β)
+###  KL Penalty (β)
 
-![KL Penalty](images/kl_penalty.png)
+![KL Penalty](images/kl-penalty.png)
 
 Keeps policy close to the reference to avoid reward hacking.
 
@@ -127,7 +127,7 @@ Keeps policy close to the reference to avoid reward hacking.
 
 ## 🤝 Contributing
 
-Contributions, pull requests, and discussions are welcome! 🎉
+Contributions, pull requests, and discussions are welcome! 
 
 ---
 
