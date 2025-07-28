@@ -1,5 +1,5 @@
 
-# 📘 Understanding Group-wise Policy Optimization (GRPO)
+# 📘 Understanding Group Relative Policy Optimization(GRPO)
 
 A guide to the theory and implementation of **GRPO** for aligning Large Language Models (LLMs).
 
