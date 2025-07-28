@@ -15,7 +15,31 @@ The aim of GRPO is to fine-tune a base LLM (**reference policy** `π_ref`) to cr
 
 ### 📌 Formal Objective:
 \[
-L_{GRPO}(π_θ) = \mathbb{E}_{x∼D,y∼π_θ(⋅∣x)}[r(x,y)] − β⋅\mathbb{E}_{x∼D}[KL(π_θ(⋅∣x)||π_ref(⋅∣x))]
+The formal objective that GRPO aims to maximize is:
+
+L 
+GRPO
+​
+ (π 
+θ
+​
+ )=E 
+x∼D,y∼π 
+θ
+​
+ (⋅∣x)
+​
+ [r(x,y)]−β⋅E 
+x∼D
+​
+ [KL(π 
+θ
+​
+ (⋅∣x)∣∣π 
+ref
+​
+ (⋅∣x))]
+Let's break down the components:
 \]
 
 - **π_θ(y|x)**: Probability of the fine-tuned model generating response `y` for prompt `x`.
