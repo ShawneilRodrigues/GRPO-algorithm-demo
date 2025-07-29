@@ -119,7 +119,7 @@ Keeps policy close to the reference to avoid reward hacking.
 
 ## 📜 References
 
-* **Group-wise Policy Optimization (GRPO)** – Inspired by group-wise preference optimization methods.
+* **GRPO** – [Group-Relative Policy Optimization](https://arxiv.org/abs/2502.01652).
 * **PPO:** [Proximal Policy Optimization Algorithms](https://arxiv.org/abs/1707.06347)
 * **DPO:** [Direct Preference Optimization](https://arxiv.org/abs/2305.18290)
 
